@@ -10,18 +10,19 @@
 
 import React, {type PropsWithChildren} from 'react';
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
-  StatusBar,
-  StyleSheet,
+  ScrollViewComponent,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
 import CustomInput from './src/CustomInput';
 import CustomButton from './src/CustomButton';
-
+import CustomFlex from './src/CustomFlex';
+import CustomSectionList from './src/CustomSectionList';
+import ForgetPass from './src/ForgetPass';
 export  const orangeColor = '#E7421B';
 const App = () => {
   const InputList =[
@@ -53,10 +54,19 @@ const App = () => {
     }
   ]
 
+  const signUp= (label:string) =>{
+    Alert.alert(label)
+  }
+
+
+  const login =(label:string) =>{
+    Alert.alert(label)
+  }
+
 
   return (
-    <SafeAreaView>
-      <View style={{marginTop:50}}>
+    <SafeAreaView> 
+     <ScrollView style={{marginTop:50}}>
           <Text style={{
             textAlign:'center', 
             color:orangeColor,
@@ -68,13 +78,24 @@ const App = () => {
               InputList.map((input :{placeholder:string , label:string, isEmail:boolean, isPassword:boolean } , index:number) =>(
                 <CustomInput  label={input.label} placeholder={input.placeholder} isEmail={input.isEmail} isPassword={input.isPassword} />
               ))
+              
             }
-             <CustomButton label={'Sign Up'}  colorCode={orangeColor} id={1} />     
-             <CustomButton label={'Login'}  colorCode={'yellow'}  id={2}  />   
-            </View>              
-                                     
-      </View>
-        
+              <CustomButton label={'Sign Up'}  colorCode={'red'} onPress={(val:string)=>{signUp(val)}}/>     
+              <CustomButton label={'Login'}  colorCode={'yellow'} onPress={(val:string)=>{login(val)}}  />  
+              <ForgetPass label={'Forget'}  coLor={'green'}/>
+              <ForgetPass label={'Forget'} coLor={'blue'}/>
+              <ForgetPass label={'Forget'}  coLor={'brown'}/>
+              <ForgetPass label={'Forget'}  coLor={'yellow'}/>
+              <ForgetPass label={'Forget'}  coLor={'red'}/>
+              <ForgetPass label={'Forget'}  coLor={'black'}/>
+
+             
+
+            </View>       
+                  
+             
+          </ScrollView>
+      
     </SafeAreaView>
   );
 };

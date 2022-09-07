@@ -1,15 +1,18 @@
 import React from 'react'
-import { Text, TouchableOpacity, View,  } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
+
 
 type CustomButtonProps  ={
     label:string;
     colorCode:string;
-    id:number;
+    onPress:(val:string) => void;
+  
 }
-const CustomButton: React.FC<CustomButtonProps> =({label, colorCode}) => {
+const CustomButton: React.FC<CustomButtonProps> =({label, colorCode, onPress}) => {
     return (
         <View>
             <TouchableOpacity  
+                onPress={()=> onPress(label)}
                 style={{ height:40,
                         width:250,
                         backgroundColor:colorCode,
@@ -18,8 +21,8 @@ const CustomButton: React.FC<CustomButtonProps> =({label, colorCode}) => {
                         alignItems:'center',
                         marginHorizontal:70,
                         borderRadius:14}}>
-                <Text> {label}</Text>
-            </TouchableOpacity>
+                <Text> {label}</Text>    
+            </TouchableOpacity> 
         </View>
     )
 }
